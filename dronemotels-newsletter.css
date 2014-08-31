@@ -1,0 +1,50 @@
+@import url(http://fonts.googleapis.com/css?family=Rajdhani:400);
+
+body {
+	font-family: 'Rajdhani', sans-serif;
+	font-weight: 400;
+	color:black;
+	background:white;
+	text-align: center;
+}
+a:link {
+	color:black;
+	font-weight: 600;
+}
+a:visited {
+	color:black;
+}
+p {
+	font-size: 18px;
+}
+input[type="text"] {
+	width: 250px;
+	border:1px dashed black;
+	padding:10px;
+	font-size: 18px;
+	text-align: center;
+}
+input[type="button"] {
+	border:none;
+	padding:10px;
+	font-size: 12px;
+	background:black;
+	color:white;
+}
+.home-splash {
+	background-image:url('/droneanimation.gif');
+	background-repeat: no-repeat;
+	background-size: 500px auto;
+	background-position: bottom;
+}
+.home-splash > p {
+	font-family: 'Rajdhani', sans-serif;
+	font-weight: 400;
+	font-size: 60px;
+	text-align: center;
+	line-height: 60px;
+	padding-top:100px;
+	padding-bottom:200px;
+	margin:0px;
+	text-shadow:2px 2px 6px yellow;
+}
