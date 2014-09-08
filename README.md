@@ -72,3 +72,15 @@ Try to document your build, so others can appreciate their stay much more. If yo
 ###v3.0:...
 
 
+
+***
+
+###Toolbox Motel System:
+- blockchain.info web-api
+- cylon.js
+- npm
+- express
+- mjpg-streamer
+- tor
+
+
