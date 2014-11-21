@@ -5,10 +5,10 @@ Charging while charging:
 ***
 
 ### System
-- blockchain.info web-api
-- cylon.js
-- npm
-- express
+- [blockchain.info](https://blockchain.info/api) web-api
+- [cylon.js](http://cylonjs.com/)
+- [npm](http://npmjs.com)
+- [linino](http://linino.org)
 - mjpg-streamer
+- express
 - tor
-
