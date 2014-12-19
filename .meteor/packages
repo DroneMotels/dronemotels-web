@@ -3,8 +3,10 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
-standard-app-packages
-bootstrap-3
-fontawesome4
-showdown
 spiderable
+chrismbeckett:fontawesome4
+jquery
+showdown
+markdown
+meteor-platform
+mizzao:bootstrap-3
