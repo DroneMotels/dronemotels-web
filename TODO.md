@@ -1,3 +1,5 @@
+### Data Sources
+- Map: [json-countries](https://github.com/mledoze/countries) (create  meteor package?)
 
 ### Connector
 Charging while charging:
