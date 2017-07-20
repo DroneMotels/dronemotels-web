@@ -1,0 +1,48 @@
+.hover:hover {
+  cursor: pointer;
+}
+.flag.icon.hover:hover {
+  color:orange !important;
+}
+
+div.comment > .content > .reply.form {
+  display: none;
+}
+
+div.comment-block > .one.column.row {
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+.comment-style-small {
+  color: #bbb;
+  font-size: 10px;
+}
+.comment-style-small > a {
+  color: #bbb;
+}
+.comment-style-time {
+  color: #bbb;
+  font-size: 10px;
+}
+.comment-style-time::before {
+  content: "\B7";
+  display: inline-block;
+  margin-left: 7px;
+  margin-right: 7px;
+}
+.rate-up,
+.rate-down {
+  color: #ddd;
+}
+.rate-up:hover {
+  color: green;
+}
+.rate-down:hover {
+  color: red;
+}
+.rate-number {
+  text-align:center;
+  font-family:monospace;
+  padding-right:3px;
+  color:#aaa;
+}

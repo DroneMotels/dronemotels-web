@@ -1,0 +1,171 @@
+<template name="user_messages">
+  <div class="ui fluid grid">
+    <div class="six wide column" style="border-right:1px dashed #ddd;">
+      <div class="ui header">
+        Conversations
+      </div>
+      <div class="ui link divided items">
+        {{#each messagesCombined}}
+          <a class="item messageGroupItem" href="/{{currentUser.username}}/messages/{{from}}">
+            <div class="ui mini image">
+              <img src="{{avatarUrlWithUserId from}}">
+            </div>
+            <div class="middle aligned content">
+              <div class="header">
+                {{usernameWithId from}}
+              </div>
+              {{#with messagesUnreadWithUserId from}}
+                <i class="ui label">{{this}}</i>
+              {{/with}}
+            </div>
+          </a>
+        {{/each}}
+      </div>
+    </div>
+    <div class="ten wide column">
+      {{#if sessionMessageGroupSelected}}
+        <div class="ui header">
+          Messages
+        </div>
+        <div class="messageWindow">
+          {{#each messagesFromUserWithId}}
+            <div class="ui fluid grid" style="margin:2px 0;">
+              <div class="ui right aligned one wide column" style="padding:3px;">
+                <i class="ui small remove icon removeMessage hover"></i>
+              </div>
+              <div class="ui fifteen wide column" style="padding:0;">
+                {{#if isEqual from currentUser._id}}
+                  <div class="ui right aligned basic segment" style="padding:0;">
+                    <div class="ui blue message">
+                      <p class="right aligned text">{{content}}</p>
+                    </div>
+                  </div>
+                {{else}}
+                  <div class="ui left aligned basic segment" style="padding:0;">
+                    <div class="ui message">
+                      <p>{{content}}</p>
+                    </div>
+                  </div>
+                {{/if}}
+              </div>
+            </div>
+          {{else}}
+          {{/each}}
+        </div>
+        {{#if messagesCombined}}
+          {{#with sessionMessageGroupSelected}}
+            {{> messageSendInput from=currentUser._id to=this}}
+          {{/with}}
+        {{/if}}
+      {{/if}}
+    </div>
+  </div>
+</template>
+
+<template name="messagesThread">
+  {{#each messagesCombined}}
+    {{usernameWithId from}} {{count}}<br>
+  {{/each}}
+</template>
+
+
+<template name="messageSendInput">
+  <div class="ui divider"></div>
+  <div class="ui form">
+    <div class="field">
+      <label>Send a message:</label>
+      <textarea rows=2 class="text"></textarea>
+      <br><br>
+      <div class="ui submit button messageSend">Send Message</div>
+    </div>
+  </div>
+</template>
+
+
+<template name="messagesFolders">
+  {{#with messagesCombined}}
+    {{from}}<br>
+  {{/with}}
+</template>
+
+<template name="messagesDetail">
+  {{#with messagesOfUser}}
+    <div class="ui grid">
+      <div class="ten wide column">
+        <h1 class="dm-headline"><span>MESSAGES</span></h1>
+      </div>
+    </div>
+    <div class="ui fluid vertical menu">
+      {{#each this}}
+        <div class="item">
+          <div class="ui grid">
+            <div class="eight wide column">
+              <div class="ui header">
+                {{usernameWithId from}}
+              </div>
+            </div>
+            <div class="right aligned eight wide column">
+              <div class="ui label">
+                <div class="detail">{{niceDateAgo date_created}}</div>
+              </div>
+              <div class="ui label">
+                <i class="ui trash icon removeMessage hover"></i>
+              </div>
+            </div>
+          </div>
+          <div class="ui grid">
+            <div class="ui raised padded segment container">
+              {{content}}
+            </div>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  {{else}}
+    <div class="ui raised segment">
+      You didn't receive any Messages yet :(
+    </div>
+  {{/with}}
+</template>
+
+
+<template name="messagesListed">
+  {{#with messagesOfUser}}
+    {{> messagesFolders}}
+    <div class="ui grid">
+      <div class="ten wide column">
+        <h1 class="dm-headline"><span>MESSAGES</span></h1>
+      </div>
+    </div>
+    <div class="ui fluid vertical menu">
+      {{#each this}}
+        <div class="item">
+          <div class="ui grid">
+            <div class="eight wide column">
+              <div class="ui header">
+                {{usernameWithId from}}
+              </div>
+            </div>
+            <div class="right aligned eight wide column">
+              <div class="ui label">
+                <div class="detail">{{niceDateAgo date_created}}</div>
+              </div>
+              <div class="ui label">
+                <i class="ui trash icon removeMessage hover"></i>
+              </div>
+            </div>
+          </div>
+          <div class="ui grid">
+            <div class="ui raised padded segment container">
+              {{content}}
+            </div>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  {{else}}
+    <div class="ui raised segment">
+      You didn't receive any Messages yet :(
+    </div>
+  {{/with}}
+</template>

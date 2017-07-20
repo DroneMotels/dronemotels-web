@@ -1,0 +1,267 @@
+<template name="user_motels">
+  <div class="ui grid">
+    <div class="ten wide column">
+      <h1 class="dm-headline"><span>MOTELS</span></h1>
+    </div>
+    {{#if isEqual user_selected.username currentUser.username}}
+      <div class="right aligned six wide column">
+        <a class="ui black basic button" href="/{{currentUser.username}}/motel/insert">
+          + Create Motel
+        </a>
+      </div>
+    {{/if}}
+  </div>
+  <div class="ui fluid vertical menu">
+    {{#each motelsWithOwnerId user_selected._id}}
+      <a class="item" href="/{{usernameWithId owner}}/motel/{{_id}}">
+        <div class="ui grid">
+          <div class="eight wide column">
+            {{#with imageFirst _id}}
+              <img src={{this.url}} width=50 height=50/>
+            {{/with}}
+            &nbsp;
+            {{name}}
+          </div>
+          <div class="right aligned eight wide column">
+            <i class="ui label">{{status}}</i>
+            <i>created: {{niceDateAgo date_created}}</i>
+          </div>
+        </div>
+      </a>
+    {{/each}}
+  </div>
+</template>
+
+<template name="motel_insert">
+  <div class="ui basic segment">
+    {{#autoForm collection="Motels" id="insertMotel" type="insert"}}
+      <h4 class="ui dividing header">Create Motel</h4>
+      {{> afQuickField name='name'}}
+      <br>
+      <button type="submit" class="ui blue button">Create</button>
+      <a class="ui cancel button" href="/{{currentUser.username}}/motels">Cancel</a>
+    {{/autoForm}}
+  </div>
+</template>
+
+
+<template name="motel_show">
+  {{#with motel}}
+
+    <div class="ui two column stackable padded grid">
+      <div class="twelve wide column">
+        <h1 class="ui header">{{name}}</h1>
+      </div>
+      {{#if isEqual currentUser._id owner}}
+        {{#div class="two wide right floated right aligned column"}}
+          <a class="ui button" href="/{{usernameWithId owner}}/motel/edit/{{_id}}">edit</a>
+        {{/div}}
+      {{/if}}
+    </div>
+
+    <div class="ui two column stackable grid">
+      <div class="ui ten wide column">
+        {{#if imageFirst _id}}
+          <div class="ui container basic segment">
+            {{#if hasImagesWithMotelId _id}}
+              <div class="ui tiny images">
+                {{#each imagesOfItem _id}}
+                  {{#if isGallerySelectedImage _id}}
+                    <!-- <img class="ui image" src="{{url auth=false}}" /> -->
+                  {{else}}
+                    <!-- <img class="ui image red circle" src="{{url auth=false}}" /> -->
+                  {{/if}}
+                  <img class="ui image image-selector" src="{{url auth=false}}" />
+                {{/each}}
+              </div>
+              <div class="ui divider"></div>
+            {{/if}}
+            <div class="ui centered large image">
+              {{#if gallerySelectedImage}}
+                {{#with imageWithId gallerySelectedImage}}
+                  <img class="ui image" src="{{url auth=false}}" />
+                {{/with}}
+              {{else}}
+                {{#with imageFirst _id}}
+                  <img class="ui image" src="{{url auth=false}}" />
+                {{/with}}
+              {{/if}}
+            </div>
+          </div>
+        {{/if}}
+      </div>
+      <div class="ui six wide column">
+        <div class="ui padded segment">
+          <div style="color:#aaa">{{room_size_x}}<i style="color:#aaa;size:7px;text-weight:400;">x</i>{{room_size_y}}<i style="color:#aaa;size:7px;text-weight:400;">x</i>{{room_size_z}}</div>
+          Host: <a href="/{{usernameWithId owner}}/">{{usernameWithId owner}}</a>
+          <br>
+          <i class="ui grey flag-motel flag icon hover"></i>({{flags}})
+          {{> motel_map}}
+        </div>
+
+      </div>
+
+    </div>
+
+    {{#unless isEqual currentUser._id owner}}
+      {{> messageSendInput to=owner related=_id}}
+    {{/unless}}
+    {{#if description}}
+      <div class="ui basic padded container segment">
+        <div class="ui content">
+          {{#markdown}}{{description}}{{/markdown}}
+        </div>
+      </div>
+    {{/if}}
+    {{#if dependencies}}
+      <div class="ui basic padded container segment">
+        <div class="ui header">
+          Submodules
+        </div>
+        <div class="ui segments">
+          {{#each dependencies}}
+            {{#with moduleWithId this}}
+              <div class="ui vertical padded container segment">
+                <div class="ui header">
+                  <a href="/{{usernameWithId owner}}/module/{{_id}}">{{usernameWithId owner}}/{{name}}</a>
+                </div>
+              </div>
+            {{/with}}
+          {{/each}}
+        </div>
+      </div>
+    {{/if}}
+
+    {{> commentsWithPostId postId=_id}}
+
+  {{/with}}
+</template>
+
+
+<template name="motel_map">
+  <div id="map-show"></div>
+</template>
+
+
+
+<template name="motel_edit">
+
+    {{#with motel}}
+      <div class="ui two column stackable grid">
+        <div class="twelve wide column">
+          <h1 class="ui header">{{name}}</h1>
+        </div>
+        {{#div class="two wide right floated right aligned column"}}
+          <a class="ui button" href="/{{usernameWithId owner}}/motel/{{_id}}">show</a>
+        {{/div}}
+      </div>
+    {{/with}}
+
+    <br>
+    <div class="ui top center attached tabular menu">
+      <a class="item active" data-tab="general">General</a>
+      <a class="item" data-tab="location">Location</a>
+      <a class="item" data-tab="images">Images</a>
+      <a class="item" data-tab="room">Room Properties</a>
+    </div>
+    <div class="ui bottom attached tab segment active" data-tab="general">
+      {{#autoForm collection="Motels" doc=motel id="editMotel" type="update"}}
+        <div class="ui field">
+          <div class="ui grid">
+            <div class="four wide column">
+              <div class="ui fluid normal selection dropdown">
+                {{> afFieldInput name='status' type='hidden'}}
+                <!-- <input type="hidden" name="status" value="{{motel.status}}"> -->
+                <i class="dropdown icon"></i>
+                <div class="default text">Select Status</div>
+                <div class="menu">
+                  {{#each motelStatusOptions}}
+                  <div class="item {{#if isEqual ../motel.status this.value}}active{{/if}}" data-value="{{this.value}}">
+                    <!-- <img class="ui mini avatar image" src="/images/avatar/small/jenny.jpg"> -->
+                    {{this.label}}
+                  </div>
+                  {{/each}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ui field">
+          {{> afQuickField name='name'}}
+        </div>
+        <div class="ui field">
+          {{> afQuickField type='textarea' name='description' rows=6}}
+        </div>
+        <br>
+        <div class="column">
+          <input type="submit" class="ui green button" value="Save" style="color:white !important;">
+          <a class="ui cancel button" href="/{{currentUser.username}}/motels">Close</a>
+          <a class="ui remove inverted red button">Remove</a>
+        </div>
+      {{/autoForm}}
+    </div>
+    <div class="ui bottom attached tab segment tablocation" data-tab="location">
+      <div class="ui field">
+        <button class="ui button map-zoom-world">World</button>
+        <button class="ui button map-zoom-area">Area</button>
+        <button class="ui button map-zoom-closeup">Closeup</button>
+      </div>
+      <div id="map-edit"></div>
+      {{#autoForm collection="Motels" doc=motel id="editMotel" type="update"}}
+      <div class="ui grid">
+        <div class="four wide column">
+          {{> afQuickField name='location_lat'}}
+        </div>
+        <div class="four wide column">
+          {{> afQuickField name='location_lng'}}
+        </div>
+        <div class="four wide column">
+          {{> afQuickField name='location_mag'}}
+        </div>
+        <div class="four wide column">
+          {{> afQuickField name='type'}}
+        </div>
+      </div>
+      <br>
+      <div class="ui field">
+        <input type="button" class="ui green button map-update" value="Save" style="color:white !important;">
+      </div>
+      {{/autoForm}}
+      <div class="ui field">
+      </div>
+    </div>
+    <div class="ui bottom attached tab segment" data-tab="images">
+      <div class="ui segment">
+        {{> images_upload postId=motel._id}}
+      </div>
+      <div class="ui segment">
+        {{> images_listing postId=motel._id}}
+      </div>
+    </div>
+    <div class="ui bottom attached tab segment" data-tab="room">
+      {{#autoForm collection="Motels" doc=motel id="editMotel" type="update"}}
+      <div class="ui grid">
+        <div class="four wide column">
+          {{> afQuickField name='room_size_x'}}
+        </div>
+        <div class="four wide column">
+          {{> afQuickField name='room_size_y'}}
+        </div>
+        <div class="four wide column">
+          {{> afQuickField name='room_size_z'}}
+        </div>
+      </div>
+      <div class="ui field">
+        <!-- {{> afQuickField name='room_features' type='select-checkbox' trueLabel="Yes" falseLabel="No"}} -->
+        {{> afQuickField name='room_features' type='select-checkbox' trueLabel="Yes" falseLabel="No"}}
+      </div>
+      <div class="ui field">
+        <input type="submit" class="ui green button" value="Save" style="color:white !important;">
+      </div>
+      {{/autoForm}}
+    </div>
+</template>
+
+<template name="quickField_nothing">
+  <h1>blaa</h1>
+</template>

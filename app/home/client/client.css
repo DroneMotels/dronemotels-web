@@ -1,0 +1,17 @@
+#map-home {
+    /*position: absolute;
+    top: 0px;*/
+    /*margin-top: -300px;*/
+    background: #181818;
+    min-height: 500px;
+    min-width: 100%;
+    /*margin-top:30px;*/
+}
+
+.leaflet-control-attribution.leaflet-control {
+  background: black;
+  color:gray;
+}
+.leaflet-control-attribution.leaflet-control > a {
+  color:gray;
+}

@@ -1,0 +1,25 @@
+.control-label {
+    line-height: 40px;
+    padding-left: 2px;
+}
+
+#map-edit {
+    background: white;
+    min-height: 350px;
+    min-width: 100%;
+    min-width: 300px;
+    margin-top:10px;
+    margin-bottom:30px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+#map-show {
+    background: white;
+    min-height: 350px;
+    min-width: 100%;
+    min-width: 300px;
+    margin-top:10px;
+    margin-bottom:30px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}

@@ -1,0 +1,244 @@
+<template name="user_modules">
+  <div class="ui grid">
+    <div class="ten wide column">
+      <h1 class="dm-headline"><span>MODULES</span></h1>
+    </div>
+    {{#if isEqual user_selected.username currentUser.username}}
+      <div class="right aligned six wide column">
+        <a class="ui black basic button" href="/{{currentUser.username}}/module/insert">
+          + Create Module
+        </a>
+      </div>
+    {{/if}}
+  </div>
+  {{#if modules}}
+    <div class="ui fluid vertical menu">
+      {{#each modules}}
+        <a class="item" href="/{{currentUser.username}}/module/{{_id}}">
+          <div class="ui grid">
+            <div class="eight wide column">
+              {{name}}
+            </div>
+            <div class="right aligned eight wide column">
+              <div class="ui label">
+                created
+                <div class="detail">{{niceDateAgo date_created}}</div>
+              </div>
+            </div>
+          </div>
+        </a>
+      {{/each}}
+    </div>
+  {{else}}
+    <div class="ui raised segment">
+      You don't have any Modules yet.
+    </div>
+  {{/if}}
+</template>
+
+<template name="module_insert">
+  <div class="ui basic segment">
+    {{#autoForm collection="Modules" id="insertModule" type="insert"}}
+      <h4 class="ui dividing header">Create Module</h4>
+      {{> afQuickField name='name'}}
+      <br>
+      <button type="submit" class="ui blue button">Create</button>
+      <a class="ui cancel button" href="/{{currentUser.username}}/modules">Cancel</a>
+    {{/autoForm}}
+  </div>
+</template>
+
+<template name="module_show">
+  {{#with module}}
+    <div class="ui raised padded container segment">
+      <div class="left floated segment">
+        <div class="ui huge header">
+          {{name}}
+          {{#if isEqual currentUser._id owner}}
+            <a style="font-size:16px;" href="/{{usernameWithId owner}}/module/edit/{{_id}}">edit</a>
+          {{/if}}
+          <div class="sub header">
+            Creator: <a href="/{{usernameWithId owner}}/">{{usernameWithId owner}}</a>
+            <br>
+            <i class="ui grey flag-module flag icon hover"></i>({{flags}})
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {{#if imageFirst _id}}
+      <div class="ui raised padded container segment">
+        {{#if hasImagesWithModuleId _id}}
+          <div class="ui tiny images">
+            {{#each imagesOfItem _id}}
+              {{#if isGallerySelectedImage _id}}
+                <!-- <img class="ui image" src="{{url auth=false}}" /> -->
+              {{else}}
+                <!-- <img class="ui image red circle" src="{{url auth=false}}" /> -->
+              {{/if}}
+              <img class="ui image image-selector" src="{{url auth=false}}" />
+            {{/each}}
+          </div>
+          <div class="ui divider"></div>
+        {{/if}}
+        <div class="ui centered large image">
+          {{#if gallerySelectedImage}}
+            {{#with imageWithId gallerySelectedImage}}
+              <img class="ui image" src="{{url auth=false}}" />
+            {{/with}}
+          {{else}}
+            {{#with imageFirst _id}}
+              <img class="ui image" src="{{url auth=false}}" />
+            {{/with}}
+          {{/if}}
+        </div>
+      </div>
+    {{/if}}
+
+    {{#if description}}
+      <div class="ui raised padded container segment">
+        <div class="ui content">
+          {{#markdown}}{{description}}{{/markdown}}
+        </div>
+      </div>
+    {{/if}}
+
+    {{#if dependencies}}
+      <div class="ui raised padded container segment">
+        <div class="ui header">
+          Submodules
+        </div>
+        <div class="ui segments">
+          {{#each dependencies}}
+            {{#with moduleWithId this}}
+              <div class="ui vertical padded container segment">
+                <div class="ui header">
+                  <a href="/{{usernameWithId owner}}/module/{{_id}}">{{usernameWithId owner}}/{{name}}</a>
+                </div>
+              </div>
+            {{/with}}
+          {{/each}}
+        </div>
+      </div>
+    {{/if}}
+
+    {{> commentsWithPostId postId=_id}}
+
+  {{/with}}
+</template>
+
+<template name="map_component">
+</template>
+
+<template name="module_edit">
+
+    <div class="ui grid">
+      <div class="nine wide column">
+        <h1 class="dm-headline dm-headline-thick">{{module.name}}</h1>
+        <a href="/{{usernameWithId module.owner}}/module/{{module._id}}">show</a>
+      </div>
+    </div>
+    <br>
+
+    <div class="ui raised segment">
+      {{#autoForm collection="Modules" doc=module id="editModule" type="update"}}
+        <div class="column">
+          <input type="submit" class="ui green button" value="Save" style="color:white !important;">
+          <a class="ui cancel button" href="/{{currentUser.username}}/modules">Close</a>
+          <a class="ui remove inverted red button">Remove</a>
+        </div>
+        <h2 class="ui header">
+          General
+          <div class="sub header">Name, Description and Size.</div>
+        </h2>
+        <div class="ui divider"></div>
+        <div class="ui field">
+          {{> afQuickField name='name'}}
+        </div>
+        <div class="ui field">
+          {{> afQuickField name='description' rows=6}}
+        </div>
+        <div class="ui grid">
+          <div class="four wide column">
+            {{> afQuickField name='size_x'}}
+          </div>
+          <div class="four wide column">
+            {{> afQuickField name='size_y'}}
+          </div>
+          <div class="four wide column">
+            {{> afQuickField name='size_z'}}
+          </div>
+        </div>
+        <br>
+      {{/autoForm}}
+    </div>
+
+    <div class="ui raised segment">
+      <h2 class="ui header">
+        Submodules
+        <div class="sub header">If you are using other Modules in this Module, list them here.</div>
+      </h2>
+      <div class="ui divider"></div>
+      <div class="ui middle aligned divided list">
+        {{#each module.dependencies}}
+          {{#with moduleWithId this}}
+            <div class="item">
+              <div class="right floated content">
+                <button type="button" class="ui red basic button remove-submodule">
+                  Remove
+                </button>
+              </div>
+              <!-- <img class="ui avatar image" src="/images/avatar2/small/lena.png"> -->
+              <div class="content">
+                <div class="header">
+                  <a href="/{{#with userWithId owner}}{{username}}{{/with}}/module/{{_id}}">
+                    {{#with userWithId owner}}{{username}}{{/with}}/{{name}}
+                  </a>
+                </div>
+                <div class="description">
+                  created: {{niceDateAgo date_created}}
+                </div>
+              </div>
+            </div>
+          {{/with}}
+        {{/each}}
+      </div>
+      <div class="ui divider"></div>
+
+      <div class="ui grid">
+        <div class="twelve wide column">
+          <div class="ui fluid search normal selection dropdown">
+            <input type="hidden" name="selected-submodule">
+            <i class="dropdown icon"></i>
+            <div class="default text">Select Submodule</div>
+            <div class="menu">
+              {{#each moduleList}}
+              <div class="item" data-value="{{this.value}}">
+                <!-- <img class="ui mini avatar image" src="/images/avatar/small/jenny.jpg"> -->
+                {{this.label}}
+              </div>
+              {{/each}}
+            </div>
+          </div>
+        </div>
+        <div class="right aligned four wide column">
+          <button class="ui blue button add-dependency">Add selected Submodule</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="ui bottom raised segment">
+      <h2 class="ui header">
+        Images
+        <div class="sub header">Pictures, Sketches or Renderings of your Module</div>
+      </h2>
+      <div class="ui divider"></div>
+      <div class="ui segment">
+        {{> images_upload postId=module._id}}
+      </div>
+      <div class="ui divider"></div>
+      <div class="ui segment">
+        {{> images_listing postId=module._id}}
+      </div>
+    </div>
+</template>

@@ -1,0 +1,176 @@
+body,html {
+  background:white !important;
+}
+.white {
+    background: white;
+}
+.menu > .toc {
+  display: none !important;
+}
+.loader {
+  min-height: 100vh;
+}
+.dm-very-large-header {
+  margin-top:40px !important;
+  padding-bottom:20px !important;
+  font-weight: 100 !important;
+  letter-spacing: 6px !important;
+  font-size: 4em !important;
+}
+@media only screen and (max-width:700px) {
+  .dm-very-large-header {
+    letter-spacing: 3px !important;
+    font-size: 2em !important;
+  }
+}
+
+.messageWindow {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 50vh;
+
+  padding:0 10px 0 0;
+  /*background:rgb(240,240,240);*/
+}
+div.messageWindow > .grid > .column > .segment > .message {
+  padding: 5px 10px !important;
+  border: none !important;
+  box-shadow: none !important;
+  text-overflow: ellipsis !important;
+}
+.messageWindow > .grid > .column > .icon {
+  color: rgb(220,220,220);
+}
+.messageWindow > .grid > .column > .icon:hover {
+  color: red;
+  transition: color 1s;
+}
+
+.dm-very-large-header {
+  padding-top:40px !important;
+  padding-bottom:20px !important;
+  font-weight: 100 !important;
+  letter-spacing: 6px !important;
+  font-size: 4em;
+}
+.dm-splash {
+  background-color: white !important;
+  /*background-image: url(/img/common/dm-bg.jpg) !important;*/
+  background-position:center center !important;
+  background-repeat: no-repeat !important;
+  background-color: rgb(248,245,52) !important;
+  background-size: 50vw !important;
+
+}
+.dm-splash > .ui.text.container > img {
+  width:100%;
+}
+.dm-splash > .ui.text.container > h1 {
+  margin: 0px;
+  margin-top:0px;
+  font-weight: 100;
+  letter-spacing: 10px;
+}
+.dm-splash > .ui.text.container > h2 {
+  margin: 0px;
+  margin-bottom: 30px;
+  /*margin-top:-20px;*/
+  font-weight: 100;
+  letter-spacing: 1px;
+}
+.dm-splash > .ui.text.container {
+  margin-bottom: 80px;
+}
+
+.hidden.menu {
+    display: none;
+}
+
+.masthead.segment {
+    /*min-height: 300px;*/
+    padding: 1em 0em;
+}
+
+.masthead .logo.item img {
+    margin-right: 1em;
+}
+
+.masthead .ui.menu .ui.button {
+    margin-left: 0.5em;
+}
+
+.masthead h1.ui.header {
+    margin-top: 3em;
+    margin-bottom: 0em;
+    font-size: 4em;
+    font-weight: normal;
+}
+
+.masthead h2 {
+    font-size: 1.7em;
+    font-weight: normal;
+}
+
+.ui.vertical.stripe {
+    padding: 0em 0em;
+}
+
+.ui.vertical.stripe h3 {
+    font-size: 2em;
+}
+
+.ui.vertical.stripe .button+h3, .ui.vertical.stripe p+h3 {
+    margin-top: 3em;
+}
+
+.ui.vertical.stripe .floated.image {
+    clear: both;
+}
+
+.ui.vertical.stripe p {
+    font-size: 1.33em;
+}
+
+.ui.vertical.stripe .horizontal.divider {
+    margin: 3em 0em;
+}
+
+.quote.stripe.segment {
+    padding: 0em;
+}
+
+.quote.stripe.segment .grid .column {
+    padding-top: 5em;
+    padding-bottom: 5em;
+}
+
+.footer.segment {
+    padding: 5em 0em;
+}
+
+.secondary.pointing.menu .toc.item {
+    display: none;
+}
+
+@media only screen and (max-width: 700px) {
+    .ui.fixed.menu {
+        display: none !important;
+    }
+    .secondary.pointing.menu .item, .secondary.pointing.menu .menu {
+        display: none;
+    }
+    .secondary.pointing.menu .toc.item {
+        display: block;
+    }
+    .masthead.segment {
+        min-height: 350px;
+    }
+    .masthead h1.ui.header {
+        font-size: 2em;
+        margin-top: 1.5em;
+    }
+    .masthead h2 {
+        margin-top: 0.5em;
+        font-size: 1.5em;
+    }
+}

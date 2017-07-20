@@ -1,0 +1,164 @@
+<head>
+  <title>dronemotels.io</title>
+</head>
+
+<template name="loginButtonsRow">
+  <a href='/login'>
+    <button>Login</button>
+  </a>
+</template>
+
+<template name="loading">
+  <div class="loader"></div>
+</template>
+
+<template name="div">
+  <div>
+    {{> Template.contentBlock}}
+  </div>
+</template>
+
+<template name="layout_default">
+  {{> menubar menuFollow=true}}
+  {{> menubar menuSidebar=true}}
+  <div class="pusher">
+    {{> menubar menuMasthead=true}}
+    <div class="ui container basic segment">
+      {{> yield}}
+    </div>
+    {{> yield region='footer'}}
+  </div>
+</template>
+
+<template name="layout_home">
+  {{> menubar menuFollow=true}}
+  {{> menubar menuSidebar=true}}
+  <div class="pusher">
+    {{> menubar menuMasthead=true}}
+    {{> yield}}
+    {{> yield region='footer'}}
+  </div>
+</template>
+
+<template name="formLayout">
+  {{> menubar menuFollow=true}}
+  {{> menubar menuSidebar=true}}
+  <div class="pusher">
+    {{> menubar menuMasthead=true}}
+    <div class="ui two column center aligned container stackable grid">
+      <div class="ui basic padded segment">
+        {{> atForm}}
+      </div>
+    </div>
+    {{> yield region='footer'}}
+  </div>
+</template>
+
+<template name="menubar">
+  {{#if menuFollow}}
+    <!-- Following Menu -->
+    <div class="ui large top fixed hidden menu">
+      <div class="ui container">
+        <a class="active item">Home</a>
+        <!-- <a class="item">Work</a> -->
+        <!-- <a class="item">Company</a> -->
+        <!-- <a class="item">Careers</a> -->
+        <div class="right menu">
+          <div class="item">
+            <a class="ui button">Log in</a>
+          </div>
+          <div class="item">
+            <a class="ui primary button">Sign Up</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  {{/if}}
+
+  <!-- Sidebar Menu -->
+  {{#if menuSidebar}}
+    <div class="ui vertical sidebar menu">
+      <a class="active item">Home</a>
+      <!-- <a class="item">Work</a> -->
+      <!-- <a class="item">Company</a> -->
+      <!-- <a class="item">Careers</a> -->
+      <a class="item">Login</a>
+      <a class="item">Signup</a>
+    </div>
+  {{/if}}
+
+  {{#if menuMasthead}}
+    <div class="ui vertical masthead center aligned segment dm-splash">
+
+      <div class="ui container">
+        <div class="ui large secondary menu">
+          <a class="toc item">
+            <i class="sidebar icon"></i>
+          </a>
+          <a class="item {{activeIf 'home'}}" href="/">Home</a>
+          <a class="item {{activeIf 'faq'}}" href="/faq">faq</a>
+
+          <div class="right item">
+            {{#if userMessagesUnreadCount}}
+              <a class="ui icon" href="/{{currentUser.username}}/messages">
+                <i class="mail icon"></i>
+                {{#with userMessagesUnreadCount}}
+                  <div class="ui floating red label">
+                    {{this}}
+                  </div>
+                {{/with}}
+              </a>
+            {{/if}}
+          </div>
+          {{#if currentUser}}
+            <a class="item" href="/{{currentUser.username}}/">
+              {{currentUser.username}}&nbsp;
+              <!-- <img src="{{currentUser.avatar}}" alt="avatar" class="ui avatar image"> -->
+            </a>
+            <a class="item" href="{{pathFor 'logout'}}">Logout</a>
+          {{else}}
+            <a class="item" href="{{pathFor 'signin'}}">Login</a>
+            <a class="item" href="{{pathFor 'signup'}}">Register</a>
+          {{/if}}
+        </div>
+      </div>
+
+      {{#if isPage 'home'}}
+        <div class="ui text container">
+          <img src="/img/common/dm-bg.jpg" alt="" />
+          <h1 class="ui header">
+            Dronemotels
+          </h1>
+          <h2>Host drone travelers</h2>
+          {{#unless currentUser}}
+            <div class="ui huge black button">Get Started <i class="right arrow icon"></i></div>
+          {{/unless}}
+        </div>
+      {{/if}}
+
+    </div>
+  {{/if}}
+</template>
+
+<template name="footer">
+  <div class="ui inverted vertical footer segment">
+    <div class="ui container">
+      <div class="ui stackable inverted divided equal height stackable grid">
+        <div class="three wide column">
+          <h4 class="ui inverted header">About</h4>
+          <div class="ui inverted link list">
+            <a href="/history" class="item">History</a>
+            <a href="/faq" class="item">FAQ</a>
+          </div>
+        </div>
+        <div class="three wide column">
+          <h4 class="ui inverted header">Related</h4>
+          <div class="ui inverted link list">
+            <a href="https://github.com/dronemotels" class="item">Github</a>
+            <a href="https://twitter.com/dronemotels" class="item">Twitter</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

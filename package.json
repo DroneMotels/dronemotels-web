@@ -1,0 +1,30 @@
+{
+  "name": "dronemotels",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.7.7"
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {
+        "browsers": [
+          "last 2 versions"
+        ]
+      }
+    }
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel-runtime": "^6.23.0",
+    "bcrypt": "^1.0.2",
+    "canvas": "^1.6.5",
+    "meteor-node-stubs": "^0.2.11",
+    "simpl-schema": "^0.3.1"
+  }
+}

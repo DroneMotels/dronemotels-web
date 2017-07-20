@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="960px"
+	 height="560px" viewBox="0 0 960 560" enable-background="new 0 0 960 560" xml:space="preserve">
+<g id="Layer_1" display="none">
+	<text transform="matrix(1 0 0 1 339.2695 266.5078)" display="inline"><tspan x="0" y="0" font-family="'Helvetica-Bold'" font-size="72.3414" letter-spacing="-1">DRONE</tspan><tspan x="-18.634" y="74.81" font-family="'Helvetica-Bold'" font-size="72.3414" letter-spacing="-1">M</tspan><tspan x="40.18" y="74.81" font-family="'Helvetica-Bold'" font-size="72.3414" letter-spacing="-2">O</tspan><tspan x="93.556" y="74.81" font-family="'Helvetica-Bold'" font-size="72.3414">T</tspan><tspan x="137.745" y="74.81" font-family="'Helvetica-Bold'" font-size="72.3414" letter-spacing="-1">E</tspan><tspan x="184.549" y="74.81" font-family="'Helvetica-Bold'" font-size="72.3414" letter-spacing="-2">L</tspan><tspan x="225.844" y="74.81" font-family="'Helvetica-Bold'" font-size="72.3414" letter-spacing="-1">S</tspan></text>
+</g>
+<g id="Layer_2" display="none">
+	<polygon display="inline" points="960,309 631,174 0,309 0,560 960,560 	"/>
+</g>
+<g id="Layer_2_copy" display="none">
+	<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="457.498" y1="167.9858" x2="526.4927" y2="511.4264">
+		<stop  offset="0" style="stop-color:#FCEE21;stop-opacity:0"/>
+		<stop  offset="1" style="stop-color:#FCEE21"/>
+	</linearGradient>
+	<polygon display="inline" fill="url(#SVGID_1_)" points="960,560 631,425 0,560 0,0 960,0 	"/>
+	<polygon display="inline" points="960,560 631,425 0,560 0,560 960,560 	"/>
+</g>
+<g id="Layer_2_copy_2">
+	
+		<linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="457.4971" y1="167.9873" x2="526.4918" y2="511.4279" gradientTransform="matrix(-1 0 0 -1 960 560)">
+		<stop  offset="0" style="stop-color:#FCEE21;stop-opacity:0"/>
+		<stop  offset="1" style="stop-color:#FCEE21"/>
+	</linearGradient>
+	<polygon fill="url(#SVGID_2_)" points="0,0 329,135 960,0 960,560 0,560 	"/>
+	<polygon points="0,0 329,135 960,0 960,0 0,0 	"/>
+</g>
+<g id="Layer_3" display="none">
+	<polygon display="inline" points="0,251 329,386 960,251 960,0 0,0 	"/>
+</g>
+<g id="Layer_4" display="none">
+	<polygon display="inline" points="198.625,281.779 134,295.648 134,305.976 199.536,333.221 264.507,319.312 264.669,309.052 	"/>
+	<polygon display="inline" points="701.808,204.667 672,211.048 672,215.799 702.227,228.333 732.155,221.935 732.211,217.214 	"/>
+	<g id="Layer_6" display="inline">
+		<g>
+			<g>
+				<path fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" d="M234.5,301.5
+					c0.832-0.024,1.664-0.059,2.494-0.102"/>
+				<path fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" stroke-dasharray="4.9932,4.9932" d="
+					M241.973,301.03c19.39-1.824,38.375-7.966,57.884-9.096c16.005-0.64,32.679,0,48.684,0
+					c46.017,0.637,92.033,1.274,136.049-12.758c35.347-11.48,67.357-31.251,102.704-42.095c25.343-7.014,48.686-7.652,74.027-10.841
+					c8.369-1.067,17.671-1.688,25.954-4.103"/>
+				<path fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" d="M689.662,221.38
+					c0.791-0.273,1.571-0.566,2.338-0.88"/>
+			</g>
+		</g>
+	</g>
+</g>
+<g id="Layer_7" display="none">
+	<polygon display="inline" points="188.625,183.779 124,197.648 124,207.976 189.536,235.221 254.507,221.312 254.669,211.052 	"/>
+	<polygon display="inline" points="794.974,308.122 656,337.983 656,360.218 796.936,418.878 936.74,388.933 937.128,366.841 	"/>
+	<polygon display="inline" points="691.808,106.667 662,113.048 662,117.799 692.227,130.333 722.155,123.935 722.211,119.214 	"/>
+	<path display="inline" fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" stroke-dasharray="5,5" d="
+		M761.666,381c-18.666,4-34,10-51.333,16.666c-22,8.667-40.667,22.667-62,32C619.666,443,583,443,552.333,438.333
+		c-38-4.667-68-27.333-101.333-44c-34.667-18.667-82-42-122-36C297,363,268.333,383,238.333,393.666
+		c-31.333,10.667-62.667,12.667-92-3.333C123,377.666,85,355,101.667,323.666c5.333-10,27.333-25.333,24-38.666
+		c-4-13.333-26-8-31.333-20.667C82.333,237,159,219,173,217l51.5-13.5c31.328-1.077,61.968-8.977,93.296-10.049
+		c32.249-1.104,64.41,2.051,96.632-0.937c29.978-2.78,59.036-9.988,86.864-21.462c27.408-11.301,53.399-27.079,82.562-33.618
+		c32.378-7.26,66.901-2.222,98.146-14.934"/>
+</g>
+<g id="Layer_5" display="none">
+	<polygon display="inline" points="809.02,479 701.086,501.98 810.526,547 918.46,524.02 	"/>
+</g>
+</svg>

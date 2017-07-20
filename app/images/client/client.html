@@ -1,0 +1,24 @@
+<template name="images_upload">
+  Select file(s) to upload (<b>JPG</b> or <b>PNG</b>)
+  <br/>
+  <br/>
+  <input name="files" id="files" type="file" class="images" multiple>
+  <br/>
+  <br/>
+  <button class="upload">Upload</button>
+</template>
+
+<template name="images_listing">
+	{{#if imagesCount}}
+    {{#each images}}
+      {{> images_listing_item postId=postId image=this}}
+    {{/each}}
+    <h4><b>Shift-Click</b> to remove Image</h4>
+	{{else}}
+		<h4>no images yet</h4>
+	{{/if}}
+</template>
+
+<template name="images_listing_item">
+	<img src="{{image.url}}" width="200">
+</template>
