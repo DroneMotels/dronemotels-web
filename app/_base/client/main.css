@@ -55,10 +55,9 @@ div.messageWindow > .grid > .column > .segment > .message {
 }
 .dm-splash {
   background-color: white !important;
-  /*background-image: url(/img/common/dm-bg.jpg) !important;*/
   background-position:center center !important;
   background-repeat: no-repeat !important;
-  background-color: rgb(248,245,52) !important;
+  background-color: #f8ed5f !important;
   background-size: 50vw !important;
 
 }
