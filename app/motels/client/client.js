@@ -63,7 +63,7 @@ Router.map(function() {
         },
         waitOn: function() {
             Session.set('gallerySelectedImage', null)
-            return Meteor.subscribe('motels') && Meteor.subscribe('commentsWithPostId', this.params.motelid);
+            return Meteor.subscribe('motels');
         },
         data: function() {
             return {

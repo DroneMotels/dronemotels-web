@@ -18,8 +18,7 @@ Router.map(function() {
           Meteor.subscribe('meta')
           && Meteor.subscribe('userData')
           && Meteor.subscribe('motels')
-          && Meteor.subscribe('modules')
-          && Meteor.subscribe('commentsLatest');
+          && Meteor.subscribe('modules');
       },
       data: function() {
           return {

@@ -63,11 +63,6 @@ UI.registerHelper('isMotel', function(id) {
 UI.registerHelper('moduleWithId', function(id) {
     return Modules.findOne(id)
 })
-UI.registerHelper('ratingsWithCommentId', function(id) {
-    return Ratings.find({
-        commentId: id
-    })
-})
 UI.registerHelper('ratingsWithMotelId', function(id) {
     return Ratings.find({
         motelId: id
@@ -78,26 +73,12 @@ UI.registerHelper('ratingsWithModuleId', function(id) {
         moduleId: id
     })
 })
-UI.registerHelper('ratingsCountWithCommentId', function(id) {
-    return Ratings.find({
-        commentId: id
-    }).count()
-})
 UI.registerHelper('imageFirst', function(postId) {
     return _.first(Images.find({
         postId: postId
     }).fetch())
 })
 
-UI.registerHelper('ratingOfCommentWithId', function(commentId) {
-    var rating = 0
-    Ratings.find({
-        commentId: commentId
-    }).forEach(function(item) {
-        rating = rating + item.rating
-    })
-    return rating
-})
 UI.registerHelper('ratingOfMotelWithId', function(id) {
     var rating = 0
     Ratings.find({
