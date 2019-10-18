@@ -1,4 +1,5 @@
-import Canvas from 'canvas'
+// import Canvas from 'canvas'
+const { createCanvas, loadImage, Image } = require('canvas')
 
 Meteor.methods({
   createAvatarForUserWithId: function(userId){
@@ -17,8 +18,8 @@ createAvatar = function(){
   var randomColor = function(){
     return Math.floor(120+Math.random()*(255-120))
   }
-  var Image = Canvas.Image
-  , canvas = new Canvas(200, 200)
+  // var Image = Canvas.Image
+  var canvas = new createCanvas(200, 200)
   , ctx = canvas.getContext('2d');
 
   // background
