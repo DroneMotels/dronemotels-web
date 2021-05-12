@@ -29,6 +29,6 @@
     "phantomjs-prebuilt": "^2.1.16",
     "postcss": "^7.0.18",
     "postcss-load-config": "^2.1.0",
-    "simpl-schema": "^1.5.6"
+    "simpl-schema": "^1.10.2"
   }
 }
